@@ -50,8 +50,3 @@ public class RandomWord {
 }
 
 ```
-
-- 咱也不确定对不对，这瓜不包真嗷
-
-![image-20230603200710129](images/image-20230603200710129.png)
-
