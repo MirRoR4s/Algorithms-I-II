@@ -2,11 +2,11 @@
 
 ## 环境配置
 
-这个有时候确实能烦死人，但是后续我发现老师们已经写的很清楚了，关键在于你有没有好好阅读说明指南。
-
-傻瓜式操作就直接安装老师给的那个安装包，集成完毕了属于是。
+环境配置有时可能比较麻烦，此时应仔细阅读指南。
 
 ## Week 1
+
+地址：https://www.coursera.org/learn/algorithms-part1/home/week/1
 
 ### Course Introduction
 
