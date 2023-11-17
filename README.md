@@ -3,11 +3,15 @@
 ## 环境配置
 
 环境配置有时可能比较麻烦，此时应仔细阅读指南。地址在[这里](https://lift.cs.princeton.edu/java/windows/)。另外，一定要安装指南给的 idea 版本，这好像是一个特制版的，有它的专属操作！！
+
+注意：安装环境后在终端运行 javac，总提示找不到类。此时可以通过增加 -cp 命令显式指定 class path 解决。后面我发现还是不行，不过通过 idea 来执行就可以了，很奇怪。
+
 ## Week 1
 
 地址：https://www.coursera.org/learn/algorithms-part1/home/week/1
 
 ### 作业一
+
 地址：https://coursera.cs.princeton.edu/algs4/assignments/hello/specification.php
 
 ### Course Introduction
