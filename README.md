@@ -2,9 +2,7 @@
 
 ## 环境配置
 
-环境配置有时可能比较麻烦，此时应仔细阅读指南。地址在[这里](https://lift.cs.princeton.edu/java/windows/)。另外，最好还是安装指南给出的 idea 版本，避免操作不兼容问题。
-
-
+环境配置有时可能比较麻烦，此时应仔细阅读指南。地址在[这里](https://lift.cs.princeton.edu/java/windows/)。另外，一定要安装指南给的 idea 版本，这好像是一个特制版的，有它的专属操作！！
 ## Week 1
 
 地址：https://www.coursera.org/learn/algorithms-part1/home/week/1
