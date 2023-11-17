@@ -2,11 +2,14 @@
 
 ## 环境配置
 
-环境配置有时可能比较麻烦，此时应仔细阅读指南。
+环境配置有时可能比较麻烦，此时应仔细阅读指南。地址：https://lift.cs.princeton.edu/java/windows/
 
 ## Week 1
 
 地址：https://www.coursera.org/learn/algorithms-part1/home/week/1
+
+### 作业一
+地址：https://coursera.cs.princeton.edu/algs4/assignments/hello/specification.php
 
 ### Course Introduction
 
