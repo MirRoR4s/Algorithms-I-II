@@ -1,58 +1,23 @@
-# Coursera-Algorithms-I-II
+# 作业
 
-## 环境配置
+## 前言
 
-环境配置有时可能比较麻烦，此时应仔细阅读指南。地址在[这里](https://lift.cs.princeton.edu/java/windows/)。另外，一定要安装指南给的 idea 版本，这好像是一个特制版的，有它的专属操作！！
+问题：windows 下怎样在命令行中压缩获得 zip 文件？
 
-注意：安装环境后在终端运行 javac，总提示找不到类。此时可以通过增加 -cp 命令显式指定 class path 解决。后面我发现还是不行，不过通过 idea 来执行就可以了，很奇怪。
+解决方案：我后续查证了一下，使用 [7z](https://www.7-zip.org/download.html) 这款软件即可。用法参看[此处](http://blog.haoji.me/windows-cmd-zip.html?from=xa)。
 
-## Week 1
+---
 
-地址：https://www.coursera.org/learn/algorithms-part1/home/week/1
+## Percolation
 
-### 作业一
+### 地址
 
-地址：https://coursera.cs.princeton.edu/algs4/assignments/hello/specification.php
+1. [作业入口](https://www.coursera.org/learn/algorithms-part1/programming/Lhp5z/percolation)
+2. [作业规范](https://coursera.cs.princeton.edu/algs4/assignments/percolation/specification.php)
+3. [参考链接](https://github.com/PKUFlyingPig/Princeton-Algorithm/tree/master)
 
-### Course Introduction
+- 使用两个 WeightedQuickUnionUF 解决 full site 的 bug 问题。
 
-这个 Hello World 差点给我整不会了，先是环境搭建浪费好久，代码编写执行的时候也出了问题。主要在于我的命令行下输入 enter 不代表标准输入的结束，这样程序一直卡住无法输出。最后看讨论别人告诉我说可以试试 ctrl+z 或者 ctrl+d，后面发现 ctrl+z 可以结束。
+---
 
-附上我的代码：
-
-```java
-public class HelloGoodbye {
-    public static void main(String[] args) {
-
-        System.out.println("Hello " + args[0] + " and " + args[1] + ".");
-        System.out.println("Goodbye " + args[1] + " and " + args[0] + ".");
-
-    }
-}
-
-```
-
-
-
-```java
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
-
-public class RandomWord {
-    public static void main(String[] args) {
-        String champion = null;
-        int count = 0;
-        while (!StdIn.isEmpty()) {
-            String word = StdIn.readString();
-            count++;
-            if (StdRandom.bernoulli(1.0 / count)) {
-                // 在读取第 i 个单词时，以 1/i 的概率选择该单词替换当前冠军
-                champion = word;
-            }
-        }
-        StdOut.println(champion);
-    }
-}
-
-```
+> QuickFindUF 版本的源代码已放入同名文件夹中。

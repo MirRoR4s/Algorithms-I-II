@@ -35,6 +35,9 @@
   <component name="FormatOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PROJECT_DIR$/.lift/algs4.jar!/edu/princeton/cs/algs4/QuickFindUF.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
@@ -85,14 +88,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "11",
     "last_opened_file_path": "D:/Coursera-Algorithms-I-II/Week 1/hello",
     "project.structure.last.edited": "项目",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.editor"
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
-  <component name="RunManager" selected="应用程序.RandomWord">
+  <component name="RunManager" selected="应用程序.PercolationStats">
     <configuration name="Barnsley" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Barnsley" />
       <module name="Algorithms, Part I" />
@@ -105,6 +109,24 @@
       <option name="PROGRAM_PARAMETERS" value="20" />
       <method v="2" />
     </configuration>
+    <configuration name="Percolation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Percolation" />
+      <module name="Algorithms, Part I" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PercolationStats" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="PercolationStats" />
+      <module name="Algorithms, Part I" />
+      <option name="PROGRAM_PARAMETERS" value="100 100" />
+      <method v="2" />
+    </configuration>
+    <configuration name="QuickFindUF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="edu.princeton.cs.algs4.QuickFindUF" />
+      <module name="Algorithms, Part I" />
+      <method v="2" />
+    </configuration>
     <configuration name="RandomWord" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RandomWord" />
       <module name="Algorithms, Part I" />
@@ -115,6 +137,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Percolation" />
+        <item itemvalue="应用程序.QuickFindUF" />
         <item itemvalue="应用程序.RandomWord" />
         <item itemvalue="应用程序.Barnsley" />
       </list>
