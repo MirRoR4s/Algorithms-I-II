@@ -7,7 +7,7 @@
 解决方案：我后续查证了一下，使用 [7z](https://www.7-zip.org/download.html) 这款软件即可。用法参看[此处](http://blog.haoji.me/windows-cmd-zip.html?from=xa)。
 
 - [课程地址](https://www.coursera.org/learn/algorithms-part1/home/week/)
-
+- [专属idea下载地址](https://coursera.cs.princeton.edu/algs4/assignments/hello/specification.php)
 ---
 
 ## 作业
