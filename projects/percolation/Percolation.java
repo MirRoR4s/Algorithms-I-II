@@ -2,9 +2,10 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 /**
- * 基于并查集问题实现渗滤系统阈值求解。
- * 不断地在一个 n × n 的网格上均匀随机开放一个 site，然后判断系统是否渗滤，如果渗滤那么此时阈值的估计值就是总共开放的 site 除以总的 site。
- * 解决渗滤系统的关键在于它和并查集问题的关联是什么？
+ * 基于并查集问题实现渗滤系统阈值求解，思路如下：
+ * 持续地在一个 n × n 的网格上均匀随机地开放一个 site，然后判断系统是否渗滤；如果渗滤那么阈值的估计值为当前 open 的 site 除以总的 site。
+ * 
+ * 解决渗滤系统的关键在于要找到它和并查集问题的关联
  * 在二维网格和 QuickFindUF 的 id 数组之间建立映射，完成二维数组到一维数组的转化。坐标 (i, j) 对应 i * n + j
  */
 public class Percolation {
@@ -61,15 +62,13 @@ public class Percolation {
         }
     }
 
-    // opens the site (row, col) if it is not open already
-
     /**
-     * 根据视频，开放一个 site，就是把这个 site 和它周围的 opened site 连通！这就需要调用 Union 操作
-     *
-     * @param row 1
-     * @param col 1
+     * 打开指定坐标的 site
+     * @param row 行坐标
+     * @param col 列坐标
      */
     public void open(int row, int col) {
+        // 打开 site 意味着要将该 site 和周围已打开的 site 连通起来
         validate(row, col);
         if (!isOpen(row, col)) {
             sites[row - 1][col - 1] = true;
@@ -87,7 +86,7 @@ public class Percolation {
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
         /*
-         A full site is an open site that can be connected to an open site in the top row via a chain of neighboring (left, right, up, down) open sites.
+        A full site is an open site that can be connected to an open site in the top row via a chain of neighboring (left, right, up, down) open sites.
          */
         if (!isOpen(row, col)) {
             return false;
@@ -115,6 +114,7 @@ public class Percolation {
         int n = 5;
         Percolation percolation = new Percolation(n);
         while (!percolation.percolates()) {
+            // 随机获取一个整数
             int randomNum = StdRandom.uniformInt(n * n);
             int row = randomNum / n + 1;
             int col = randomNum % n + 1;
