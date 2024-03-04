@@ -24,42 +24,21 @@ public class Percolation {
         }
         this.n = n;
         sites = new boolean[n][n];
-        // 除了 n^2 个网格节点外，还有两个虚拟节点，索引是 n^2 和 n^2 + 1
+        // 除了 n^2 个网格节点外，顶部和底部分别各有一个虚拟节点，索引分别是 n^2 和 n^2 + 1
         weightedQuickUnionUF = new WeightedQuickUnionUF(n * n + 2);
         weightedQuickUnionUFFullSite = new WeightedQuickUnionUF(n * n + 2);
         for (int j = 0; j < n; j++) {
             // 将虚拟的 top site 和首行的 site 连通，无论这些 site 是 blocked 还是 opened 的。
             weightedQuickUnionUF.union(n * n, j);
+            // 底部的虚拟节点和底部的 site 连通
             weightedQuickUnionUF.union((n * n) + 1, (n - 1) * n + j);
+            
             weightedQuickUnionUFFullSite.union(n * n, j);
         }
     }
 
-    private void validate(int row, int col) {
-        if (row <= 0 || row > n || col <= 0 || col > n) {
-            throw new IllegalArgumentException(
-                    "index " + row + " is not between 1 and " + n);
-        }
-    }
-
     private boolean isInGrid(int row, int col) {
-        if (row <= 0 || row > n || col <= 0 || col > n) {
-            return false;
-        }
-        return true;
-    }
-
-    private void connectNeighbours(int row, int col) {
-        int p = (row - 1) * n + col - 1;
-        int newRow, newCol;
-        for (int i = 0; i < 4; i++) {
-            newRow = row + dx[i];
-            newCol = col + dy[i];
-            if (isInGrid(newRow, newCol) && isOpen(newRow, newCol)) {
-                weightedQuickUnionUF.union(p, (newRow - 1) * n + newCol - 1);
-                weightedQuickUnionUFFullSite.union(p, (newRow - 1) * n + newCol - 1);
-            }
-        }
+        return row <= 0 || row >n || col <= 0 || col > n;
     }
 
     /**
@@ -69,17 +48,34 @@ public class Percolation {
      */
     public void open(int row, int col) {
         // 打开 site 意味着要将该 site 和周围已打开的 site 连通起来
-        validate(row, col);
+        if (!isInGrid(row, col)) {
+            throw new IllegalArgumentException("index " + row + " is not between 1 and " + n);
+        }
         if (!isOpen(row, col)) {
             sites[row - 1][col - 1] = true;
-            openSiteNum++;
+            openSiteNum += 1;
         }
         connectNeighbours(row, col);
     }
 
+    private void connectNeighbours(int row, int col) {
+        int p = (row - 1) * n + col - 1;
+        int newRow, newCol;
+        for (int i = 0; i < 4; i++) {
+            newRow = row + dx[i];
+            newCol = col + dy[i];
+            if (isOpen(newRow, newCol)) {
+                weightedQuickUnionUF.union(p, (newRow - 1) * n + newCol - 1);
+                weightedQuickUnionUFFullSite.union(p, (newRow - 1) * n + newCol - 1);
+            }
+        }
+    }
+
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
-        validate(row, col);
+        if (!isInGrid(row, col)) {
+            throw new IllegalArgumentException("index " + row + " is not between 1 and " + n);
+        }
         return sites[row - 1][col - 1];
     }
 
@@ -106,6 +102,7 @@ public class Percolation {
         if (openSiteNum == 0) {
             return false;
         }
+        // 当顶部和底部的两虚拟节点连通时则系统是渗滤的
         return weightedQuickUnionUF.find(n * n) == weightedQuickUnionUF.find((n * n) + 1);
     }
 
