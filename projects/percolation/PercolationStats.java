@@ -23,7 +23,7 @@ public class PercolationStats {
     private void simulate() {
         for (int i = 0; i < trials; i++) {
             Percolation percolation = new Percolation(n);
-            while (!percolation.percolates()) {
+            while (percolation.percolates()) {
                 int randomNum = StdRandom.uniformInt(n * n);
                 int row = randomNum / n + 1;
                 int col = randomNum % n + 1;
