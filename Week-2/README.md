@@ -8,6 +8,8 @@
 
 [幻灯片地址](https://www.coursera.org/learn/algorithms-part1/supplement/UAJbP/lecture-slides)
 
+pdf 有一个抽象的概念-Constant Amortized Tiem 常量摊销时间，在 [stack overflow](https://stackoverflow.com/questions/200384/what-is-constant-amortized-time) 上有相应的讲解
+
 ## Interview questions
 
 ### Queue with stacks
@@ -53,17 +55,49 @@
 
 ### 前言
 
-- 目标：为双端队列和随机队列编写泛型数据类型。利用单链表和数组实现一些基本的数据结构，并学习泛型和迭代器的基本知识。
+- 目标：编写采用泛型的双端队列和随机队列。利用单链表和数组实现一些基本的数据结构，并学习泛型和迭代器的基本知识。
 
-### 双端队列
+### Deque
 
-我打算采用数组来实现双端队列，这部分的难点主要在于如何在队列首部插入和移除元素。
+- 目标：泛型实现双端队列，能够在队首和队尾出入队元素
+- 运行时间要求：每个队列操作在最坏情况下的运行时间都是常量的；迭代器的每个操作（包括构造）在最坏情况下的运行时间都是常量的
+- 运行内存要求：长为 n 的队列至多只能使用 48n + 192 字节内存
 
-#### 实现思路
+#### 双端队列实现
 
 维护两个整数 front 和 backNext：
 
 1. front 代表队首元素在数组中的索引
 2. backNext 代表队尾元素索引的下一个索引。
 3. 在进行入队操作时，根据队列长度是否已达到数组的长度来动态地调整数组的大小，这也能够确保 front 和 backNext 不会冲突。
+
+---
+
+### RandomizedQueue
+
+- 目标：实现一个泛型随机队列，能够均匀随机地出队队列中某个元素。
+- 运行时间要求：队列的每个操作的摊销时间是常量；迭代器的 next() 和 hasNext() 最坏情况运行时间是常量，构造函数则是线性阶
+- 运行内存要求：长为 n 的随机队列至多使用 48n + 192 字节内存；对每个迭代器会用到线性阶的额外内存
+
+#### 实现
+
+- 使用数组 randomizedQueue[] 存储队列元素
+- enqueue()：在 randomizedQueue[tail] 处入队
+- dequeue()：从 randomizedQeueu[head + p] 处出队
+- 以 capacity 为模更新 head 和 tail
+- 当数组容量不够/过大时更新容量
+
+> head 代表队首元素在数组 randomizedQueue 中的索引
+> tail 代表队尾元素索引对应的下一个索引
+> p 是一个 1 到队列长度 size 之间的整数
+
+---
+
+### Permutation
+
+目标：输入一个整数 k，随后从命令行输入一系列字符串，最后均匀且随机地从输入的字符串中选出 k 个并打印出来。（序列中的每个字符串至多打印一次）
+
+> 保证输入的字符串个数 n 大于 k
+
+性能要求：运行时间和输入大小呈线性增长；仅使用常量内存再加上一大小最多为 n 的 Deque 或 RandomizedQueue 对象所占内存。
 

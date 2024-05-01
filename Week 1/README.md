@@ -1,5 +1,14 @@
-# 第一周学习思考
+# Week 1 
 
-1. 三数之和的暴力解法无论是最好、平均、最差都需要花费大约 1/2 * n^3 ，为什么？
 
-2. 双调序列如何处理？
+## Analysis of Algorithms
+
+### 学习目标
+
+- 波浪记号和增长阶记号
+- 确定程序运行时间和空间的增长阶（有关于输入大小的函数）
+- 二分搜素算法
+- 二分搜索运行时间分析
+
+> [幻灯片地址](https://www.coursera.org/learn/algorithms-part1/supplement/mpK20/lecture-slides)
+
