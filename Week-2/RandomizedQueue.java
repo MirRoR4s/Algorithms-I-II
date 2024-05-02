@@ -43,13 +43,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> { // 16
             throw new NoSuchElementException();
         }
         int index = StdRandom.uniformInt(size);
-        while (q[index] == null) {
-            index = StdRandom.uniformInt(size);
-        }
         Item result = q[index];
         q[index] = null;
+        adjust(index);
         size -= 1;
-
         if (size > 0 && size == q.length / 4) {
             resize(q.length / 2);
         }
@@ -62,9 +59,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> { // 16
             throw new NoSuchElementException();
         }
         int index = StdRandom.uniformInt(size);
-        while (q[index] == null) {
-            index = StdRandom.uniformInt(size);
-        }
         return q[index];
     }
 
@@ -80,13 +74,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> { // 16
 
         public ArrayIterator() {
             seq = (Item[]) new Object[size];
-            int tmp = 0;
-            for (int i = 0; i < q.length; i++) {
-                if (q[i] == null) {
-                    continue;
-                }
-                seq[tmp] = q[i];
-                tmp += 1;
+            for (int i = 0; i < size; i++) {
+                seq[i] = q[i];
             }
             StdRandom.shuffle(seq);
         }
@@ -120,6 +109,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> { // 16
         tail = size;
     }
 
+    private void adjust(int index) {
+        for (int i = index; i <= size - 1; i++) {
+            q[i] = q[i + 1];
+        }
+    }
+
     // unit testing (required)
     public static void main(String[] args) {
         RandomizedQueue<Integer> randomizedQueue = new RandomizedQueue<>();
@@ -132,9 +127,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> { // 16
 
         randomizedQueue.dequeue();
         randomizedQueue.dequeue();
-        // for (int i : randomizedQueue) {
-        //     System.out.println(i);
-        // }
+        for (int i : randomizedQueue) {
+            System.out.println(i);
+        }
     }
 
 }

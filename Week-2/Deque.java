@@ -1,3 +1,5 @@
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -74,8 +76,14 @@ public class Deque<Item> implements Iterable<Item> { // 16
             throw new NoSuchElementException();
         }
         Item result = first.data;
-        first.back.prev = null;
-        first = first.back;
+        if (size == 1) {
+            first = null;
+            last = null;
+        }
+        else {
+            first.back.prev = null;
+            first = first.back;
+        }
         size -= 1;
         return result;
     }
@@ -86,8 +94,14 @@ public class Deque<Item> implements Iterable<Item> { // 16
             throw new NoSuchElementException();
         }
         Item result = last.data;
-        last.prev.back = null;
-        last = last.prev;
+        if (size == 1) {
+            first = null;
+            last = null;
+        }
+        else {
+            last.prev.back = null;
+            last = last.prev;
+        }
         size -= 1;
         return result;
     }
@@ -120,31 +134,13 @@ public class Deque<Item> implements Iterable<Item> { // 16
 
     // unit testing (required)
     public static void main(String[] args) {
-        Deque<Integer> deque = new Deque<Integer>();
-        deque.addFirst(1); // 1
-        deque.addFirst(2); // 2 1
-        deque.addFirst(3); // 3 2 1
-        deque.addLast(4); // 3 2 1 4
-        // System.out.println(deque.size()); // 4
-
-        deque.removeFirst(); // 2 1 4
-        deque.removeLast(); // 2 1
-        // System.out.println(deque.size()); // 2
-
-        for (int i : deque) {
-            System.out.println(i);
-            // deque.removeFirst(); // UnsupportedOperationException
-        }
-
-        // deque = new Deque<>();
-        // deque.removeLast(); // NoSuchElementException
-        // deque.removeFirst(); // NoSuchElementException
-        // deque.addLast(null); // IIlegalArgumentException
-
-        Iterator<Integer> iterator = deque.iterator();
-        iterator.next();
-        iterator.next();
-        // iterator.next(); // NoSuchElementException
+        Deque<Integer> deque = new Deque<>();
+        deque.isEmpty();
+        deque.addFirst(2);
+        deque.addFirst(3);
+        deque.removeLast();
+        deque.removeLast();
+        StdOut.println(deque.size());
 
     }
 
