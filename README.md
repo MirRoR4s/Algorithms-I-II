@@ -11,18 +11,6 @@
 
 ---
 
-## 作业
+## 项目
 
-### 1. Percolation
-
-#### 地址
-
-1. [作业入口](https://www.coursera.org/learn/algorithms-part1/programming/Lhp5z/percolation)
-2. [作业规范](https://coursera.cs.princeton.edu/algs4/assignments/percolation/specification.php)
-3. [参考链接](https://github.com/PKUFlyingPig/Princeton-Algorithm/tree/master)
-
-- 使用两个 WeightedQuickUnionUF 解决 full site 的 bug 问题。
-
----
-
-> QuickFindUF 版本的源代码已放入同名文件夹中。
+[Project 1: percolation](https://coursera.cs.princeton.edu/algs4/assignments/percolation/specification.php)
