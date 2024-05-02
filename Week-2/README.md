@@ -90,10 +90,12 @@ pdf 有一个抽象的概念-Constant Amortized Tiem 常量摊销时间，在 [s
 ##### 算法
 
 - enqueue()：在 `randomizedQueue[tail]` 处入队。
-- dequeue()：随机生成一个 `[0, size)` 之间的整数 index，出队 `randomizedQueue[index]`。
+- dequeue()：随机生成一个 `[0, size)` 之间的整数 index，出队 `randomizedQueue[index]`，调整数组，将 index 索引后的所有元素前移一位。
 
 > 对 tail 的更新要对数组长度取模
 > 出入队需更新 size
+
+算法的问题是每一次出队都要调整数组使其连续，故而时间复杂度过高，无法满分通过测试。
 
 ---
 
