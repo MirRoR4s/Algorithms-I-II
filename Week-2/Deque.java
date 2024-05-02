@@ -1,17 +1,25 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Deque<Item> implements Iterable<Item> {
+public class Deque<Item> implements Iterable<Item> { // 16
+    private int size = 0; // 4
+    private Node first = null; // 8
+    private Node last = null; // 8
 
-    private Item[] deque; // 存储元素的数组
-    private int front = 0; // 队首元素在数组中的索引
-    private int backNext = 0;
-    // 队尾元素数组索引 + 1，注意该值要对数组长度取模
-    private int size = 0; // 队列中元素数量
+    private class Node { // 8
+        private Node prev = null; // 8
+        private Node back = null; // 8
+        private Item data; // 8
+
+        public Node(Item data) {
+            this.data = data;
+        }
+    }
+    // 16 + 4 + 8 + 8 + 8 + (16 + 8 + 8 + 8 + 8) * N + 4 = 48 + 48N，N 是队列长度
 
     // construct an empty deque
     public Deque() {
-        deque = (Item[]) new Object[1];
+
     }
 
     // is the deque empty?
@@ -29,12 +37,16 @@ public class Deque<Item> implements Iterable<Item> {
         if (item == null) {
             throw new IllegalArgumentException();
         }
-        // if the array is full, resize it.
-        if (size == deque.length) {
-            resize(size * 2);
+        Node newNode = new Node(item);
+        newNode.back = first;
+        if (isEmpty()) {
+            first = newNode;
+            last = newNode;
         }
-        front = (front - 1 + deque.length) % deque.length;
-        deque[front] = item;
+        else {
+            first.prev = newNode;
+            first = newNode;
+        }
         size += 1;
     }
 
@@ -43,14 +55,17 @@ public class Deque<Item> implements Iterable<Item> {
         if (item == null) {
             throw new IllegalArgumentException();
         }
-        // if the array is full, resize it.
-        if (size == deque.length) {
-            resize(size * 2);
+        Node newNode = new Node(item);
+        newNode.prev = last;
+        if (isEmpty()) {
+            first = newNode;
+            last = newNode;
         }
-        int index = backNext % deque.length;
-        deque[index] = item;
-        backNext = (backNext + 1) % deque.length;
-        size++;
+        else {
+            last.back = newNode;
+            last = newNode;
+        }
+        size += 1;
     }
 
     // remove and return the item from the front
@@ -58,15 +73,11 @@ public class Deque<Item> implements Iterable<Item> {
         if (size == 0) {
             throw new NoSuchElementException();
         }
-        Item res = deque[front];
-        deque[front] = null;
-        front = (front + 1) % deque.length;
+        Item result = first.data;
+        first.back.prev = null;
+        first = first.back;
         size -= 1;
-        // if capacity less than 1/4, resize it
-        if ((double) size / deque.length <= 0.25) {
-            resize(deque.length / 2);
-        }
-        return res;
+        return result;
     }
 
     // remove and return the item from the back
@@ -74,59 +85,37 @@ public class Deque<Item> implements Iterable<Item> {
         if (size == 0) {
             throw new NoSuchElementException();
         }
-        int index = (backNext - 1 + deque.length) % deque.length;
-        Item res = deque[index];
-        deque[index] = null; // 避免对象游离
-        backNext = index;
+        Item result = last.data;
+        last.prev.back = null;
+        last = last.prev;
         size -= 1;
-        if ((double) size / deque.length <= 0.25) {
-            resize(deque.length / 2);
-        }
-        return res;
+        return result;
     }
 
     // return an iterator over items in order from front to back
     public Iterator<Item> iterator() {
-        System.out.println("调用了一次");
-        return new ArrayIterator();
+        return new LinkedListIterator();
     }
 
-    private class ArrayIterator implements Iterator<Item> {
+    private class LinkedListIterator implements Iterator<Item> {
         private int initialSize = size;
-        private int currentIndex = front;
-        private int currentNumber = 0;
+        private Node p = first;
 
         public boolean hasNext() {
             if (initialSize != size) {
                 throw new UnsupportedOperationException();
             }
-            return currentNumber != size;
+            return p != null;
         }
 
         public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-
-            Item res = deque[currentIndex];
-            currentIndex = (currentIndex + 1) % deque.length;
-            currentNumber += 1;
-            return res;
+            Item result = p.data;
+            p = p.back;
+            return result;
         }
-    }
-
-    private void resize(int capacity) {
-        /*
-         * 扩容的时候注意调整队列元素在数组中的次序
-         */
-        Item[] newDeque = (Item[]) new Object[capacity];
-        for (int i = 0; i < size; i++) {
-            // 从 front 指向的队首元素开始
-            newDeque[i] = deque[(front + i) % deque.length];
-        }
-        deque = newDeque;
-        front = 0;
-        backNext = size;
     }
 
     // unit testing (required)
@@ -136,11 +125,11 @@ public class Deque<Item> implements Iterable<Item> {
         deque.addFirst(2); // 2 1
         deque.addFirst(3); // 3 2 1
         deque.addLast(4); // 3 2 1 4
-        System.out.println(deque.size()); // 4
+        // System.out.println(deque.size()); // 4
 
         deque.removeFirst(); // 2 1 4
         deque.removeLast(); // 2 1
-        System.out.println(deque.size()); // 2
+        // System.out.println(deque.size()); // 2
 
         for (int i : deque) {
             System.out.println(i);

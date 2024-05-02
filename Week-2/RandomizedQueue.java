@@ -3,10 +3,11 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class RandomizedQueue<Item> implements Iterable<Item> {
-    private int tail = 0;
-    private int size = 0;
-    private Item[] q;
+public class RandomizedQueue<Item> implements Iterable<Item> { // 16
+    private int tail = 0; // 4
+    private int size = 0; // 4
+    private Item[] q; // 24 + 8N
+    // 48 + 8N
 
     // construct an empty randomized queue
     public RandomizedQueue() {

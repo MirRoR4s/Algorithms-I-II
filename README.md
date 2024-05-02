@@ -1,13 +1,14 @@
-# 算法-普林斯顿
+# [算法-普林斯顿](https://www.coursera.org/learn/algorithms-part1/)
 
 ## 前言
 
-问题：交作业总是要交压缩包，所以 windows 下怎样在命令行中压缩获得 zip 文件？
+### 环境配置
 
-解决方案：我后续查证了一下，使用 [7z](https://www.7-zip.org/download.html) 这款软件即可。用法参看[此处](http://blog.haoji.me/windows-cmd-zip.html?from=xa)。
-
-- [课程地址](https://www.coursera.org/learn/algorithms-part1/home/week/)
 - [专属idea下载地址](https://coursera.cs.princeton.edu/algs4/assignments/hello/specification.php)
+
+> windows 下可用 [7z](https://www.7-zip.org/download.html) 在命令行压缩文件。具体用法参看[此处](http://blog.haoji.me/windows-cmd-zip.html?from=xa)。
+> win10 以上可通过创建压缩文件夹图形化地压缩文件。
+
 ---
 
 ## 作业
