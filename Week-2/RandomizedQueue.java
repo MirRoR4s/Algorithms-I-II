@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
@@ -47,6 +48,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> { // 16
         q[index] = null;
         adjust(index);
         size -= 1;
+        tail = size;
         if (size > 0 && size == q.length / 4) {
             resize(q.length / 2);
         }
@@ -99,37 +101,53 @@ public class RandomizedQueue<Item> implements Iterable<Item> { // 16
 
     private void resize(int capacity) {
         Item[] newArray = (Item[]) new Object[capacity];
-        int index = 0;
-        for (int i = 0; i < q.length; i++) {
-            if (q[i] == null) continue;
-            newArray[index] = q[i];
-            index += 1;
+        for (int i = 0; i < size; i++) {
+            newArray[i] = q[i];
         }
         q = newArray;
         tail = size;
     }
 
     private void adjust(int index) {
-        for (int i = index; i <= size - 1; i++) {
+        for (int i = index; i < size - 1; i++) {
             q[i] = q[i + 1];
         }
+        q[size - 1] = null;
     }
 
     // unit testing (required)
     public static void main(String[] args) {
-        RandomizedQueue<Integer> randomizedQueue = new RandomizedQueue<>();
-        randomizedQueue.enqueue(1);
-        randomizedQueue.enqueue(2);
-        randomizedQueue.enqueue(3);
-        // for (int i : randomizedQueue) {
-        //     System.out.println(i);
-        // }
+        RandomizedQueue<Integer> queue = new RandomizedQueue<>();
+        queue.size();
+        queue.enqueue(62);
+        queue.enqueue(667);
+        queue.enqueue(910);
+        queue.isEmpty();
+        queue.size();
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.enqueue(122);
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.enqueue(1);
 
-        randomizedQueue.dequeue();
-        randomizedQueue.dequeue();
-        for (int i : randomizedQueue) {
-            System.out.println(i);
-        }
+        StdOut.println(queue.dequeue());
+        queue.enqueue(2);
+        StdOut.println(queue.sample());
+
+
     }
 
 }
