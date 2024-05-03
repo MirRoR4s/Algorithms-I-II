@@ -5,9 +5,9 @@
 1. 学习如何基于链表和数组实现栈和队列，
 2. 学习栈的简单应用，如利用栈求解中缀算术表达式。
 
-> [幻灯片地址](https://www.coursera.org/learn/algorithms-part1/supplement/UAJbP/lecture-slides)
+> [pdf](https://www.coursera.org/learn/algorithms-part1/supplement/UAJbP/lecture-slides)
 
-pdf 有一个抽象的概念-`Constant Amortized Time` 常量摊销时间，在 [stack overflow](https://stackoverflow.com/questions/200384/what-is-constant-amortized-time) 上有相应的讲解
+`Constant Amortized Time` [常量摊销时间](https://stackoverflow.com/questions/200384/what-is-constant-amortized-time)
 
 ### Interview questions
 
