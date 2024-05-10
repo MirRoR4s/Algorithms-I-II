@@ -18,10 +18,10 @@ public class Point implements Comparable<Point> {
     // private static final Comparator<Point> BY_SLOPE = new BySlope();
 
     private static class BySlope implements Comparator<Point> {
-        private Point currePoint;
+        private Point currentPoint;
 
         public BySlope (Point a) {
-            currePoint = a;
+            currentPoint = a;
         }
         public int compare(Point a, Point b) {
             /*此处可能会有问题，compare 能返回 double 类型吗？因为规范说
@@ -38,12 +38,15 @@ public class Point implements Comparable<Point> {
             if (a.x == b.x) {
                 return Integer.MAX_VALUE;
             }
-            double slope1 = currePoint.slopeTo(a);
-            double slope2 = currePoint.slopeTo(b);
-
-            return slope1 < slope2 ? -1: 1;
-
-
+            double slope1 = currentPoint.slopeTo(a);
+            double slope2 = currentPoint.slopeTo(b);
+            if (slope1 < slope2) {
+                return -1;
+            }
+            else if (slope1 > slope2) {
+                return 1;
+            }
+            return 0;
         }
     }
 
@@ -56,9 +59,9 @@ public class Point implements Comparable<Point> {
       */
     public Point(int x, int y) {
          /* DO NOT MODIFY */
-         this.x = x;
-         this.y = y;
-     }
+        this.x = x;
+        this.y = y;
+    }
 
     /**
       * Draws this point to standard draw.
@@ -93,7 +96,7 @@ public class Point implements Comparable<Point> {
     public double slopeTo(Point that) {
         /* YOUR CODE HERE */
         if (this.x == that.x && this.y == that.y) {
-            return Double.NEGATIVE_INFINITY;
+            return Double.NEGATIVE  _INFINITY;
         }
         // 判断线段是否水平
         else if (this.y == that.y) {
@@ -127,7 +130,7 @@ public class Point implements Comparable<Point> {
         else if (this.y > that.y) {
             return 1;
         }
-    
+        // 横纵坐标都相等，两点相等，返回 0
         if (this.x == that.x) {
                 return 0;
         }
